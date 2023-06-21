@@ -10,7 +10,7 @@ class UserService {
 
     // Instancia de Retrofit
     private val retrofit = Retrofit.Builder()
-        .baseUrl("http://localhost:8080/baseprojectapi/")
+        .baseUrl("http://192.168.14.113:8080/baseprojectapi/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -34,21 +34,24 @@ class UserService {
 
 
     // Método para obtener todos los usuarios
-    fun getUsers() {
+    fun getUsers(){
         var userAPI =  retrofit.create(UserAPI::class.java);
         userAPI.getUsers().enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                System.out.println("consulta exitosa")
                 // Procesar respuesta exitosa
             }
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
                 // Procesar error en la petición
+                System.out.println("consulta error")
+                t.printStackTrace()
             }
         })
     }
 
 
     // Método para obtener un usuario por su ID
-    fun getMovie(id: String) {
+    fun getUser(id: String) {
         var userAPI =  retrofit.create(UserAPI::class.java);
         userAPI.getUser(id).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
@@ -76,7 +79,7 @@ class UserService {
 
 
     // Método para eliminar un usuario
-    fun deleteMovie(id: String) {
+    fun deleteUser(id: String) {
         var userAPI =  retrofit.create(UserAPI::class.java);
         userAPI.deleteUser(id).enqueue(object : Callback<Boolean> {
             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
@@ -87,4 +90,8 @@ class UserService {
             }
         })
     }
+
+
+
+
 }

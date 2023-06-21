@@ -14,7 +14,7 @@ class InsertActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insert)
-        val dataHelper = DataHelper(this)
+       // val dataHelper = DataHelper(this)
         b_insert.setOnClickListener{
             val alertDialogBuilder = AlertDialog.Builder(this)
             alertDialogBuilder.setTitle("Confirm")
@@ -23,14 +23,23 @@ class InsertActivity : AppCompatActivity(){
                 .setPositiveButton("No"){dialog,which->
                 }
                 .setNegativeButton("Yes"){dialog,which->
-                    val nim = Integer.parseInt(et_nim.text.toString())
-                    val name = et_name.text.toString()
-                    val faculty = et_faculty.text.toString()
-                    val gender = findViewById<RadioButton>(rg_gender.checkedRadioButtonId)
-                    dataHelper.addStudent(Student(nim,name,gender.text.toString(),faculty))
-                    et_name.setText("")
-                    et_nim.setText("")
-                    et_faculty.setText("")
+
+                    val codigo = et_codigo.text.toString()
+                    val nombre = et_codigo.text.toString()
+                    val telefono = et_codigo.text.toString()
+
+                    var user = User()
+                    user.codigo = codigo
+                    user.nombre = nombre
+                    user.telefono =  telefono
+
+                    //dataHelper.addStudent(Student(nim,name,gender.text.toString(),faculty))
+                  var  userservi = UserService()
+                    userservi.createUser(user)
+
+                    et_codigo.setText("")
+                    et_nombre.setText("")
+                    et_telefono.setText("")
                     finish()
                 }
             val alertDialog = alertDialogBuilder.create()
