@@ -10,17 +10,28 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="Agregar usuario"/>
+        android:text="Update Student Data"/>
+
     <EditText
-        android:id="@+id/et_codigo"
+        android:id="@+id/etu_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="ID"
+        android:enabled="false"
+        style="@style/editTextStyle"/>
+
+    <EditText
+        android:id="@+id/etu_codigo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Codigo"
+        android:enabled="false"
         style="@style/editTextStyle"/>
 
     <EditText
-        android:id="@+id/et_nombre"
+        android:id="@+id/etu_nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -28,7 +39,7 @@
         style="@style/editTextStyle"/>
 
     <EditText
-        android:id="@+id/et_telefono"
+        android:id="@+id/etu_telefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"

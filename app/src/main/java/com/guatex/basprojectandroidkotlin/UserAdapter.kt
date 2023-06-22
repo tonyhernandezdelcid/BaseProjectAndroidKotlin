@@ -4,6 +4,7 @@ import java.util.*
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +65,22 @@ class UserAdapter (private val context: Context, private var userList: List<User
             }
 
             itemView.setOnClickListener {
-                getUpdate();
+
+
+
+                val intent = Intent(itemView.context, UpdateActivity::class.java)
+                intent.putExtra("id", user.id )
+                intent.putExtra("codigo", user.codigo )
+                intent.putExtra("nombre", user.nombre )
+                intent.putExtra("telefono", user.telefono )
+
+
+                itemView.context.startActivity(intent)
+
+
+
+
+
             }
         }
 

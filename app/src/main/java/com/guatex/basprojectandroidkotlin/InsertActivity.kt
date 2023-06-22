@@ -2,8 +2,6 @@ package com.guatex.basprojectandroidkotlin
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.widget.RadioButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_insert.*
 import kotlinx.android.synthetic.main.component_button_insert_conf.*
@@ -25,8 +23,8 @@ class InsertActivity : AppCompatActivity(){
                 .setNegativeButton("Yes"){dialog,which->
 
                     val codigo = et_codigo.text.toString()
-                    val nombre = et_codigo.text.toString()
-                    val telefono = et_codigo.text.toString()
+                    val nombre = et_nombre.text.toString()
+                    val telefono = et_telefono.text.toString()
 
                     var user = User()
                     user.codigo = codigo

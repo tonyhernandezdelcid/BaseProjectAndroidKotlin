@@ -25,7 +25,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Student List"/>
+                android:text="Listado de usuarios"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_marginBottom="8dp"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:text="Long pressed to delete the student"/>
+                android:text="Deje presionado para eliminar el usuario, o presione el registro para modificarlo"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_student"
