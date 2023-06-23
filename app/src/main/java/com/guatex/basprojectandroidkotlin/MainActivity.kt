@@ -16,7 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    var list: List<User> = ArrayList()
+    var list: ArrayList<User> = ArrayList()
+    var studentAdapter = UserAdapter(this@MainActivity, list)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         var userAPI =  retrofit.create(UserAPI::class.java);
-        userAPI.getUsers().enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+        userAPI.getUsers().enqueue(object : Callback<ArrayList<User>> {
+            override fun onResponse(call: Call<ArrayList<User>>, response: Response<ArrayList<User>>) {
                 System.out.println("consulta exitosa")
 
                 list = response.body()!!
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 // Procesar respuesta exitosa
             }
 
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
                 // Procesar error en la petición
                 System.out.println("consulta error")
                 t.printStackTrace()
@@ -55,10 +56,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        var studentAdapter = UserAdapter(this@MainActivity, list)
+
         rv_student.setHasFixedSize(true);
         rv_student.layoutManager = LinearLayoutManager(this@MainActivity);
+        studentAdapter.notifyDataSetChanged()
         rv_student.adapter = studentAdapter;
+
 
       /**  rv_student.apply {
             setHasFixedSize(true)
@@ -69,6 +72,10 @@ class MainActivity : AppCompatActivity() {
         refresh_swipe.setOnRefreshListener {
             refresh_swipe.isRefreshing=false
             studentAdapter.getUpdate()
+            rv_student.setHasFixedSize(true);
+            rv_student.layoutManager = LinearLayoutManager(this@MainActivity);
+            rv_student.adapter = studentAdapter;
+
         }
 
 
@@ -78,6 +85,15 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refresh_swipe.isRefreshing=false
+        studentAdapter.getUpdate()
+        rv_student.setHasFixedSize(true);
+        rv_student.layoutManager = LinearLayoutManager(this@MainActivity);
+        rv_student.adapter = studentAdapter;
     }
 
 }

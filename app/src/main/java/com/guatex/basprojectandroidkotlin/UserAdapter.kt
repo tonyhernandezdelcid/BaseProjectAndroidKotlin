@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class UserAdapter (private val context: Context, private var userList: List<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>(){
+class UserAdapter (private val context: Context, private var userList: ArrayList<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_student,parent,false))
     }
@@ -41,23 +41,26 @@ class UserAdapter (private val context: Context, private var userList: List<User
 
             itemView.setOnLongClickListener{
                 val alertDialogBuilder = AlertDialog.Builder(itemView.context)
-                alertDialogBuilder.setTitle("Confirm")
-                    .setMessage("Are you sure to delete "+user.nombre+"?")
+                alertDialogBuilder.setTitle("Confirmación")
+                    .setMessage("Confirme si desea eliminar al usuario: "+user.nombre+"?")
                     .setCancelable(true)
                     .setPositiveButton("No"){dialog,which->
-                        Toast.makeText(itemView.context, "Cancel Delete ", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(itemView.context, "Eliminación cancelada", Toast.LENGTH_SHORT).show()
                     }
-                    .setNegativeButton("Yes"){dialog,which->
+                    .setNegativeButton("Si"){dialog,which->
 
                         var usrservi = UserService()
                         usrservi.deleteUser(user.id)
                         //val db = DataHelper(itemView.context)
                        // db.deleteStudent(student) MANDAR A LLAMAR A API PARA ELIMINAR
-                       // userList.remove(user)
+                        userList.remove(user)
 
-                        //getUpdate()
+
+                       // getUpdate()
+
                         notifyDataSetChanged()
-                        Toast.makeText(itemView.context,"Delete success",Toast.LENGTH_SHORT).show()
+                       // Toast.makeText(itemView.context,"Delete success",Toast.LENGTH_SHORT).show()
+
                     }
                 val alertDialog = alertDialogBuilder.create()
                 alertDialog.show()
@@ -97,18 +100,18 @@ class UserAdapter (private val context: Context, private var userList: List<User
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         var userAPI =  retrofit.create(UserAPI::class.java);
-        userAPI.getUsers().enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+        userAPI.getUsers().enqueue(object : Callback<ArrayList<User>> {
+            override fun onResponse(call: Call<ArrayList<User>>, response: Response<ArrayList<User>>) {
                 System.out.println("consulta exitosa")
 
                 userList = response.body()!!
-
+                notifyDataSetChanged()
 
 
                 // Procesar respuesta exitosa
             }
 
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
                 // Procesar error en la petición
                 System.out.println("consulta error")
                 t.printStackTrace()
@@ -117,7 +120,7 @@ class UserAdapter (private val context: Context, private var userList: List<User
 
 
        // userList = db.getAllUsers()
-        notifyDataSetChanged()
+
     }
 
 

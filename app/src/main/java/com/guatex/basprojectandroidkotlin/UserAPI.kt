@@ -2,6 +2,7 @@ package com.guatex.basprojectandroidkotlin
 
 import retrofit2.Call
 import retrofit2.http.*
+import java.util.*
 
 interface UserAPI {
 
@@ -11,7 +12,7 @@ interface UserAPI {
 
     // Método para obtener todos los usuarios
     @GET("consultausuarios")
-    fun getUsers(): Call<List<User>>
+    fun getUsers(): Call<ArrayList<User>>
 
     // Método para obtener un usuario por su ID
     @GET("verusrindividual/{id}")

@@ -15,12 +15,12 @@ class InsertActivity : AppCompatActivity(){
        // val dataHelper = DataHelper(this)
         b_insert.setOnClickListener{
             val alertDialogBuilder = AlertDialog.Builder(this)
-            alertDialogBuilder.setTitle("Confirm")
-                .setMessage("Are you sure to insert it?")
+            alertDialogBuilder.setTitle("Confirmación")
+                .setMessage("Confirme si desea agregar el usuario")
                 .setCancelable(true)
                 .setPositiveButton("No"){dialog,which->
                 }
-                .setNegativeButton("Yes"){dialog,which->
+                .setNegativeButton("Si"){dialog,which->
 
                     val codigo = et_codigo.text.toString()
                     val nombre = et_nombre.text.toString()

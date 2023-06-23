@@ -36,12 +36,12 @@ class UserService {
     // Método para obtener todos los usuarios
     fun getUsers(){
         var userAPI =  retrofit.create(UserAPI::class.java);
-        userAPI.getUsers().enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+        userAPI.getUsers().enqueue(object : Callback<ArrayList<User>> {
+            override fun onResponse(call: Call<ArrayList<User>>, response: Response<ArrayList<User>>) {
                 System.out.println("consulta exitosa")
                 // Procesar respuesta exitosa
             }
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
                 // Procesar error en la petición
                 System.out.println("consulta error")
                 t.printStackTrace()

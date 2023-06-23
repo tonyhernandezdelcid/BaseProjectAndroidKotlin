@@ -10,7 +10,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="Update Student Data"/>
+        android:text="Modificar usuario"/>
 
     <EditText
         android:id="@+id/etu_id"
@@ -49,5 +49,5 @@
 
 
 
-    <include layout="@layout/component_button_insert_conf"/>
+    <include layout="@layout/component_button_update_conf"/>
 </LinearLayout>
