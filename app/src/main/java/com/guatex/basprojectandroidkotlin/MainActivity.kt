@@ -17,12 +17,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     var list: ArrayList<User> = ArrayList()
-    var studentAdapter = UserAdapter(this@MainActivity, list)
+    var userAdapter = UserAdapter(this@MainActivity, list)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        b_insert_student.setOnClickListener{
+        b_insert_user.setOnClickListener{
             val intent = Intent(this, InsertActivity::class.java)
             startActivity(intent)
         }
@@ -57,10 +57,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        rv_student.setHasFixedSize(true);
-        rv_student.layoutManager = LinearLayoutManager(this@MainActivity);
-        studentAdapter.notifyDataSetChanged()
-        rv_student.adapter = studentAdapter;
+        rv_user.setHasFixedSize(true);
+        rv_user.layoutManager = LinearLayoutManager(this@MainActivity);
+        userAdapter.notifyDataSetChanged()
+        rv_user.adapter = userAdapter;
 
 
       /**  rv_student.apply {
@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity() {
 
         refresh_swipe.setOnRefreshListener {
             refresh_swipe.isRefreshing=false
-            studentAdapter.getUpdate()
-            rv_student.setHasFixedSize(true);
-            rv_student.layoutManager = LinearLayoutManager(this@MainActivity);
-            rv_student.adapter = studentAdapter;
+            userAdapter.getUpdate()
+            rv_user.setHasFixedSize(true);
+            rv_user.layoutManager = LinearLayoutManager(this@MainActivity);
+            rv_user.adapter = userAdapter;
 
         }
 
@@ -90,10 +90,10 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         refresh_swipe.isRefreshing=false
-        studentAdapter.getUpdate()
-        rv_student.setHasFixedSize(true);
-        rv_student.layoutManager = LinearLayoutManager(this@MainActivity);
-        rv_student.adapter = studentAdapter;
+        userAdapter.getUpdate()
+        rv_user.setHasFixedSize(true);
+        rv_user.layoutManager = LinearLayoutManager(this@MainActivity);
+        rv_user.adapter = userAdapter;
     }
 
 }

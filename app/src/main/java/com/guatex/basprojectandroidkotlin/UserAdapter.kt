@@ -37,7 +37,7 @@ class UserAdapter (private val context: Context, private var userList: ArrayList
             itemView.tv_name.text = user.codigo
             itemView.tv_faculty.text = user.nombre
 
-                itemView.iv_student.setImageResource(R.drawable.maleprofile)
+                itemView.iv_user.setImageResource(R.drawable.maleprofile)
 
             itemView.setOnLongClickListener{
                 val alertDialogBuilder = AlertDialog.Builder(itemView.context)

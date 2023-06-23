@@ -6,11 +6,9 @@ package com.guatex.basprojectandroidkotlin
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_insert.*
 import kotlinx.android.synthetic.main.activity_update.*
-import kotlinx.android.synthetic.main.component_button_insert_conf.*
 import kotlinx.android.synthetic.main.component_button_update_conf.*
-import kotlinx.android.synthetic.main.item_student.view.*
+
 
 
 class UpdateActivity : AppCompatActivity() {
